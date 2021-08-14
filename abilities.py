@@ -32,11 +32,11 @@ class Ability(ABC):
     
     @property
     def damage(self):
-        return random.choice(self._damage)
+        return self._damage if isinstance(self._damage, int) else random.choice(self._damage)
 
     @damage.setter
     def damage(self, value):
-        self._damage = value if any(isinstance(value, type_) for type_ in [range, int]) else 0
+        self._damage = value
 
 
 class AttackingAbility(Ability):
