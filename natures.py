@@ -1,14 +1,13 @@
 from abc import ABC, abstractproperty
+
 class Nature(ABC):
+    '''Singleton pattern realization '''
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super(Nature, cls).__new__(cls)
         return cls._instance
-
-    def __init__(self) -> None:
-        pass
 
     @abstractproperty
     def good_vs(self) -> "Nature":
@@ -19,9 +18,6 @@ class Nature(ABC):
         pass
 
 class Fire(Nature):
-    def __init__(self) -> None:
-        pass
-
     @property
     def good_vs(self) -> Nature:
         return Flora()
@@ -31,9 +27,6 @@ class Fire(Nature):
         return Water()
     
 class Water(Nature):
-    def __init__(self) -> None:
-        pass
-    
     @property
     def good_vs(self) -> Nature:
         return Fire()
@@ -43,9 +36,6 @@ class Water(Nature):
         return Flora()
 
 class Flora(Nature):
-    def __init__(self) -> None:
-        pass
-    
     @property
     def good_vs(self) -> Nature:
         return Water()
@@ -53,3 +43,14 @@ class Flora(Nature):
     @property
     def bad_vs(self) -> Nature:
         return Fire()
+
+
+class Normal(Nature):
+    @property
+    def good_vs(self) -> Nature:
+        pass
+
+    @property
+    def bad_vs(self) -> Nature:
+        pass
+    
