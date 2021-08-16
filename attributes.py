@@ -21,6 +21,11 @@ class LimitedByMaximumAttrs:
     
     def reset(self):
         self.current = self.maximum
+    
+    def __str__(self) -> str:
+        return f'({self.current}/{self.maximum})'
+    def __repr__(self) -> str:
+        return self.__str__()
 
 
 class Hitpoints(LimitedByMaximumAttrs):    

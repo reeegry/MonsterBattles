@@ -1,5 +1,4 @@
-from abc import ABC, abstractmethod, abstractproperty
-from monsters import Monster
+from abc import ABC, abstractmethod
 from utilities import transform_class_name
 import natures
 from attributes import Power, Powerpoints
@@ -25,13 +24,13 @@ class Ability(ABC):
     '''
 
     @staticmethod
-    def attack(ability: "Ability", defender: Monster):
+    def attack(ability: "Ability", defender):
         if defender.nature is ability.nature.good_vs:
-            defender.hp -= round(ability.power.current * ability.multiplier)
+            defender.hp.current -= round(ability.power.current * ability.multiplier)
         elif defender.nature is ability.nature.bad_vs:
-            defender.hp -= round(ability.power.current / ability.multiplier)
+            defender.hp.current -= round(ability.power.current / ability.multiplier)
         else:
-            defender.hp -= ability.power.current
+            defender.hp.current -= ability.power.current
 
     @property
     def nature(self):
@@ -40,6 +39,11 @@ class Ability(ABC):
     @nature.setter
     def nature(self, value):
         self._nature = value if isinstance(value, natures.Nature) else natures.Normal
+    
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}: Power:{self.power}, PP:{self.powerpoints}'
+    def __repr__(self) -> str:
+        return self.__str__()
 
 
 class FireTunder(Ability):

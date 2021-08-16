@@ -19,14 +19,14 @@ class MonsterLocations(Enum):
 class Monster(ABC):
     def __init__(self) -> None:
         self.name = transform_class_name(self.__class__.__name__)
-        self.enemy = NoEnemy()
         self.hp = Hitpoints(100)
         self.speed = Speed(0)
         self.abilities_list = []
         self.state = MonsterStates.DEFAULT
         self.location = MonsterLocations.DEFAULT
         self.nature = natures.Normal()
-        
+        self.enemy = None
+
     def update(self):
         self.kill()
         self.draw()
@@ -63,7 +63,7 @@ class Monster(ABC):
 
     @property
     def nature(self):
-        return self.nature
+        return self._nature
 
     @nature.setter
     def nature(self, value):
@@ -75,10 +75,8 @@ class Monster(ABC):
 
     @enemy.setter
     def enemy(self, value):
-        self._enemy = value if isinstance(value, Monster) else NoEnemy()
+        self._enemy = value if isinstance(value, Monster) else None
     
-class NoEnemy(Monster):
-    pass
 
 class Flee(Monster):
     def __init__(self) -> None:
