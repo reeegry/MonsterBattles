@@ -4,7 +4,6 @@ import natures
 import random
 
 
-
 class Ability(ABC):
     def __init__(self, owner) -> None:
         self.name = transform_class_name(self.__class__.__name__)
@@ -44,12 +43,12 @@ class AttackingAbility(Ability):
         self._before_use()
         if self.owner.enemy.nature is self.nature.good_vs:
             self.owner.enemy.hp -= round(self.damage * self.multiplier)
-
         elif self.owner.enemy.nature is self.nature.bad_vs:
             self.owner.enemy.hp -= round(self.damage / self.multiplier)
         else:
             self.owner.enemy.hp -= round(self.damage)
         self._after_use()
+
 
 class FireTunder(AttackingAbility):
     def __init__(self, owner) -> None:
@@ -64,8 +63,9 @@ class FireTunder(AttackingAbility):
         pass
 
     @property
-    def nature(self):
+    def nature(self) -> natures.Nature:
         return natures.Fire()
+
 
 class BubbleStorm(AttackingAbility):
     def __init__(self, owner) -> None:

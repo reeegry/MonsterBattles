@@ -1,4 +1,6 @@
 from abc import ABC, abstractproperty
+
+
 class Nature(ABC):
     _instance = None
 
@@ -18,6 +20,7 @@ class Nature(ABC):
     def bad_vs(self) -> "Nature":
         pass
 
+
 class Fire(Nature):
     def __init__(self) -> None:
         pass
@@ -29,7 +32,8 @@ class Fire(Nature):
     @property
     def bad_vs(self) -> Nature:
         return Water()
-    
+
+
 class Water(Nature):
     def __init__(self) -> None:
         pass
@@ -41,6 +45,7 @@ class Water(Nature):
     @property
     def bad_vs(self) -> Nature:
         return Flora()
+
 
 class Flora(Nature):
     def __init__(self) -> None:
