@@ -17,6 +17,7 @@ class Nature(ABC):
     def bad_vs(self) -> "Nature":
         pass
 
+
 class Fire(Nature):
     @property
     def good_vs(self) -> Nature:
@@ -25,7 +26,8 @@ class Fire(Nature):
     @property
     def bad_vs(self) -> Nature:
         return Water()
-    
+
+
 class Water(Nature):
     @property
     def good_vs(self) -> Nature:
@@ -34,6 +36,7 @@ class Water(Nature):
     @property
     def bad_vs(self) -> Nature:
         return Flora()
+
 
 class Flora(Nature):
     @property
