@@ -32,12 +32,14 @@ class Hitpoints(LimitedByMaximumAttrs):
     def __init__(self, value, ranged = False) -> None:
         super().__init__(value, ranged)
     
+
 class Powerpoints(LimitedByMaximumAttrs):
     '''
     How many times you can use abiities
     '''
     def __init__(self, value, ranged = False) -> None:
         super().__init__(value, ranged)
+
 
 class Speed(LimitedByMaximumAttrs):
     '''

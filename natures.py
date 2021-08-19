@@ -1,4 +1,6 @@
 from abc import ABC, abstractproperty
+from functools import wraps
+
 
 class Nature(ABC):
     '''Singleton pattern realization '''
